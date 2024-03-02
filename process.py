@@ -39,9 +39,6 @@ for lan in languages:
 #         user_lan_met_data = user_lan_dataset[j+1]
 #         anon_lan_met_data = anon_lan_dataset[j+1]
 
-
-
-# number of editors vs absolute-bytes
 for i in range(len(user_dataset)):
     lan = languages[i]
     print(lan+"------------------------------------------")
