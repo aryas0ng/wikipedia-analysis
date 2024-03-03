@@ -1,6 +1,9 @@
 import pandas as pd
 import numpy as np
 from scipy.stats import pearsonr
+import matplotlib.pyplot as plt
+import csv
+import seaborn as sns
 
 languages = ["arabic","chinese","english","french","russian","spanish"]
 metrics = ["editors","absolute-bytes","edited-page","edits","netbytediff","newpages"]
@@ -49,14 +52,31 @@ for i in range(len(user_dataset)):
     user_editors = user_lan_dataset[0]
     anon_editors = anon_lan_dataset[0]
 
+    # metric_user_values = user_lan_dataset[1]
+    # print(user_editors)
+    # print("------------------")
+    # print(metric_user_values)
+    # metric = metrics[1]
+    # plt.plot(user_editors, metric_user_values)
+    # plt.title(lan + " metric for users")
+    # plt.xlabel(lan)
+    # plt.ylabel(metric)
+    # plt.show()
+    # plt.legend()
+
+    pcc_user = []
+
     for j in range(1, len(user_dataset)):
         metric = metrics[j]
         metric_user_values = user_lan_dataset[j]
         metric_anon_values = anon_lan_dataset[j]
+
         print("Calculating Pearson's correlation between number of editors vs.", metric, "for users")
         correlation_user, p_value_user = pearsonr(user_editors, metric_user_values)
         print(f"Pearson's correlation coefficient: {correlation_user}")
         print(f"P-value: {p_value_user}")
+        pcc_user.append([correlation_user])
+
         print("Calculating Pearson's correlation between number of editors vs.", metric, "for anonymous")
         correlation_anon, p_value_anon = pearsonr(anon_editors, metric_anon_values)
         print(f"Pearson's correlation coefficient: {correlation_anon}")
