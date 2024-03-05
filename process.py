@@ -148,16 +148,14 @@ for i in range(len(user_dataset)):
         print(f"Intercept: {intercept_anon}")
         slopes_anon.append(slope_anon)
         intercepts_anon.append(intercept_anon)
+    
+    print(slopes_user)
+    files = [ 'stats/theil-slope-user.csv', 'stats/theil-intercept-user.csv', \
+        'stats/theil-slope-anon.csv', 'stats/theil-intercept-anon.csv',]
+    lsts = [slopes_user, intercepts_user, slopes_anon, intercepts_anon]
+    for i in range(len(files)):
+        csv_file = files[i]
+        data_lst = lsts[i]
+        write_file(csv_file, data_lst)
 
-        files = ['stats/pearson-cc-user.csv', 'stats/pearson-p-user.csv', \
-                 'stats/pearson-cc-anon.csv', 'stats/pearson-p-anon.csv', \
-                 'stats/kendall-cc-user.csv', 'stats/kendall-p-user.csv', \
-                 'stats/kendall-cc-anon.csv', 'stats/kendall-p-anon.csv', \
-                 'stats/theil-slope-user.csv', 'stats/theil-slope-user.csv', \
-                 'stats/theil-slope-anon.csv', 'stats/theil-slope-anon.csv',]
-        lsts = [pcc_user, pp_user, pcc_anon, pp_anon, kcc_user, kp_user, kcc_anon, \
-                kp_anon, slopes_user, intercepts_user, slopes_anon, intercepts_anon]
-        for i in range(len(files)):
-            csv_file = files[i]
-            data_lst = lsts[i]
-            write_file(csv_file, data_lst)
+
